@@ -1,19 +1,18 @@
 'use client';
 import axios from "axios";
-import { useSearchParams ,useRouter} from "next/navigation";
+import { useRouter} from "next/navigation";
 import { useEffect, useState } from "react"
 
 export default function VerifyEmail(){
     
-    const searchParams = useSearchParams()
     
     const [token, setToken] = useState("")
     const [error, setError] = useState("")
     const router = useRouter()
 
     useEffect(() => {
-    const searchToken = searchParams.get('token')
-      setToken(searchToken!)
+    const urlToken = window.location.search.split("=")[1]
+      setToken(urlToken)
     }, [])
     
     const verifyUser  = async()=>{
